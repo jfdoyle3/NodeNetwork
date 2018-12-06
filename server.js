@@ -1,5 +1,8 @@
+// Initialise modules
 const express = require("express"),
   mongoose = require("mongoose"),
+  bodyParser = require("body-parser"),
+  // Create app
   app = express(),
   // Routes
   users = require("./routes/api/users"),
@@ -8,6 +11,11 @@ const express = require("express"),
   // Database Key
   db = require("./config/keys").mongoURI;
 
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//Database connection
 mongoose
   .connect(db)
   .then(() => console.log("MongoDB connected"))
