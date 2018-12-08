@@ -1,15 +1,20 @@
-const express = require("express"),
-  router = express.Router(),
-  User = require("../../models/User"),
-  gravatar = require("gravatar"),
-  bcrypt = require("bcryptjs");
+const express = require("express");
+const router = express.Router();
+const User = require("../../models/User");
+const gravatar = require("gravatar");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const keys = require("../../config/keys");
 
-// GET: Test
-// Public
+// Route: GET Login
+// Desc:  Login User / Retirn JWT Token
+// Access: Public
 router.get("/test", (req, res) => res.json({ success: "Users Works" }));
 
-// GET: Register
-// Public
+// Route: GET Login
+// Desc:  Login User / Retirn JWT Token
+// Access: Public
 router.post("/register", (req, res) => {
   const { name, email, password } = req.body;
   User.findOne({ email }).then(user => {
@@ -42,4 +47,51 @@ router.post("/register", (req, res) => {
   });
 });
 
+// Route: GET Login
+// Desc:  Login User / Retirn JWT Token
+// Access: Public
+
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
+
+  User.findOne({ email }).then(user => {
+    if (!user) {
+      return res.status(404).json({ fail: "User not found" });
+    }
+
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        const payload = { id: user.id, name: user.name, avatar: user.avatar };
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 3600 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer " + token
+            });
+          }
+        );
+      } else {
+        return res.status(400).json({ fail: "password incorrect" });
+      }
+    });
+  });
+});
+
+// GET Current User
+//
+// private
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    });
+  }
+);
 module.exports = router;
