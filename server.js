@@ -3,6 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const colors = require("colors");
+const pass = "\u2713".green;
+const fail = "\u2715".red;
 // Create app
 const app = express();
 // Routes
@@ -13,7 +16,7 @@ const posts = require("./routes/api/posts");
 const db = require("./config/keys").mongoURI;
 mongoose
   .connect(db)
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("[" + pass + "] MongoDB connected"))
   .catch(err => console.log(err));
 
 // Body Parser
@@ -31,4 +34,6 @@ app.use("/api/posts", posts);
 
 //Port
 const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Server running on port ${port}`));
+app.listen(port, () => {
+  console.log(`[` + pass + `] Server running on port ${port}`);
+});
