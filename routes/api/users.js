@@ -7,6 +7,9 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const keys = require("../../config/keys");
 
+// Validation
+const validateRegisterInput = require("../../validation/register");
+
 // Route: GET Login
 // Desc:  Login User / Retirn JWT Token
 // Access: Public
@@ -16,10 +19,17 @@ router.get("/test", (req, res) => res.json({ success: "Users Works" }));
 // Desc:  Login User / Retirn JWT Token
 // Access: Public
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+  // Check Validation
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const { name, email, password } = req.body;
   User.findOne({ email }).then(user => {
     if (user) {
-      return res.status(400).json({ fail: "Email already exists" });
+      error.email = "Email already exists";
+      return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(email, {
         s: "200", //size
