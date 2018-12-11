@@ -1,22 +1,22 @@
 // Initialise modules
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const passport = require("passport");
-// colorize fonts
-const colors = require("colors");
-// green checkmark / red x-mark
-const pass = "\u2713".green;
-const fail = "\u2715".red;
-const info = "[i]";
-// Create app
-const app = express();
-// Routes
-const users = require("./routes/api/users");
-const profile = require("./routes/api/profile");
-const posts = require("./routes/api/posts");
-// Database Key & Connections
-const db = require("./config/keys").mongoURI;
+const express = require("express"),
+  mongoose = require("mongoose"),
+  bodyParser = require("body-parser"),
+  passport = require("passport"),
+  // colorize fonts
+  colors = require("colors"),
+  // green checkmark / red x-mark / i info
+  pass = "\u2713".green,
+  fail = "\u2715".red,
+  info = "[i]",
+  // Create app
+  app = express(),
+  // Routes
+  users = require("./routes/api/users"),
+  profile = require("./routes/api/profile"),
+  posts = require("./routes/api/posts"),
+  // Database Key & Connections
+  db = require("./config/keys").mongoURI;
 mongoose
   .connect(db)
   .then(() => console.log("[" + pass + "] MongoDB connected"))

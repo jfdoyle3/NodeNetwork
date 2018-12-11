@@ -1,15 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const User = require("../../models/User");
-const gravatar = require("gravatar");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
-const keys = require("../../config/keys");
-
-// Validation
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
+const express = require("express"),
+  router = express.Router(),
+  User = require("../../models/User"),
+  gravatar = require("gravatar"),
+  bcrypt = require("bcryptjs"),
+  jwt = require("jsonwebtoken"),
+  passport = require("passport"),
+  keys = require("../../config/keys"),
+  // Validation
+  validateRegisterInput = require("../../validation/register"),
+  validateLoginInput = require("../../validation/login");
 
 // Route: GET Login
 // Desc:  Login User / Retirn JWT Token
@@ -34,16 +33,16 @@ router.post("/register", (req, res) => {
       return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(email, {
-        s: "200", //size
-        r: "pg", // rating
-        d: "mm" // default
-      });
-      const newUser = new User({
-        name,
-        email,
-        avatar,
-        password
-      });
+          s: "200", //size
+          r: "pg", // rating
+          d: "mm" // default
+        }),
+        newUser = new User({
+          name,
+          email,
+          avatar,
+          password
+        });
 
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -64,8 +63,8 @@ router.post("/register", (req, res) => {
 // Access: Public
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  const { errors, isValid } = validateLoginInput(req.body);
+  const { email, password } = req.body,
+    { errors, isValid } = validateLoginInput(req.body);
 
   // Check Validation
 
