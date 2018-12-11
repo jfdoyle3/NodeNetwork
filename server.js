@@ -3,9 +3,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+// colorize fonts
 const colors = require("colors");
+// green checkmark / red x-mark
 const pass = "\u2713".green;
 const fail = "\u2715".red;
+const info = "[i]";
 // Create app
 const app = express();
 // Routes

@@ -9,6 +9,7 @@ const keys = require("../../config/keys");
 
 // Validation
 const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
 // Route: GET Login
 // Desc:  Login User / Retirn JWT Token
@@ -20,6 +21,7 @@ router.get("/test", (req, res) => res.json({ success: "Users Works" }));
 // Access: Public
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
+
   // Check Validation
 
   if (!isValid) {
@@ -63,10 +65,17 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
+  const { errors, isValid } = validateLoginInput(req.body);
 
+  // Check Validation
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   User.findOne({ email }).then(user => {
     if (!user) {
-      return res.status(404).json({ fail: "User not found" });
+      error.email = "User not Found";
+      return res.status(404).json(errors);
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
@@ -84,7 +93,8 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ fail: "password incorrect" });
+        errors.password = "Password incorrect";
+        return res.status(400).json(errors);
       }
     });
   });
