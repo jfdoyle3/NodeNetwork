@@ -5,6 +5,7 @@ const express = require("express"),
   // Validation
   validateProfileInput = require("../../validation/profile"),
   validateExperienceInput = require("../../validation/experience"),
+  validateEducationInput = require("../../validation/education"),
   // Load Models
   Profile = require("../../models/Profile"),
   User = require("../../models/User");
@@ -146,7 +147,7 @@ router.post(
 //
 // Private
 router.post(
-  "/experince",
+  "/experience",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateExperienceInput(req.body);
@@ -172,4 +173,33 @@ router.post(
   }
 );
 
+// POST education
+//
+// Private
+router.post(
+  "/education",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+    // check validation
+    if (!isValid) {
+      //return status 400 on errors
+      return res.status(400).json(errors);
+    }
+    Profile.findOne({ user: req.user.id }).then(profile => {
+      const newEdu = {
+        school: req.body.school,
+        degree: req.body.degree,
+        fieldofstudy: req.body.fieldofstudy,
+        from: req.body.from,
+        to: req.body.to,
+        current: req.body.current,
+        description: req.body.description
+      };
+      // add
+      profile.education.unshift(newEdu);
+      profile.save().then(profile => res.json(profile));
+    });
+  }
+);
 module.exports = router;
