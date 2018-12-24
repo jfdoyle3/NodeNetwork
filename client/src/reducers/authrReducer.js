@@ -10,13 +10,13 @@ export default function (state=initalState, action ) {
 
     switch(action.type){
         case SET_CURRENT_USER:
-        return {
-            ...state,
-            isAuthenticated: !isEmpty(action.payload),
-            user: action.payload
-        };
+            return {
+                ...state,
+                isAuthenticated: !isEmpty(action.payload),
+                user: action.payload
+            };
         default:
           return state;
     }
     
-}
+};
