@@ -17,7 +17,7 @@ class Login extends Component {
 }
 
 componentWillReceiveProps(nextProps){
-  if (nextProps.auth.isAuthenicated){
+  if (nextProps.auth.isAuthenticated){
     this.props.history.push('/dashboard');
   }
   if(nextProps.errors){
@@ -32,7 +32,7 @@ onSubmit(e) {
     e.preventDefault();
     const userData={
       email: this.state.email,
-      pasword: this.state.password
+      password: this.state.password
     };
 
     this.props.loginUser(userData);
@@ -48,11 +48,11 @@ onSubmit(e) {
               <p className="lead text-center">Sign in to your Node Network account</p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
-                  <input type="email" className={classnames("form-control form-control-lg",{'is-invalid':errors.email})} placeholder="Email Address" value={this.state.email} name="email" />
+                  <input type="email" className={classnames("form-control form-control-lg",{'is-invalid':errors.email})} placeholder="Email Address" name="email" value={this.state.email} onChange={this.onChange} />
                   {errors.email && (<div className='invalid-feedback'>{errors.email}</div>)}
                 </div>
                 <div className="form-group">
-                  <input type="password" className={classnames("form-control form-control-lg",{'is-invalid':errors.password})} placeholder="Password" value={this.state.pasword} name="password" />
+                  <input type="password" className={classnames("form-control form-control-lg",{'is-invalid':errors.password})} placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
                   {errors.password && (<div className='invalid-feedback'>{errors.password}</div>)}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />

@@ -1,21 +1,37 @@
-//Add ins
+// Add ins
 import React, { Component } from "react";
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {Provider} from 'react-redux'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import jwt_decode from 'jwt-decode';
+
+// Functions
+import {setCurrentUser} from './actions/authActions';
+import setAuthToken from './utils/setAuthToken';
 
 
 // Redux Store
-import store from "./store"
+import store from "./store";
 
-//Components
-import Navbar from "./components/layout/Navbar"
-import Landing from "./components/layout/Landing"
-import Footer from "./components/layout/Footer"
-import Login from "./components/auth/Login"
-import Register from "./components/auth/Register"
+// Components
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Footer from "./components/layout/Footer";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 
 // Style Sheet
 import "./App.css";
+
+// Check for Token
+if (localStorage.jwtToken){
+    // Set auth token header auth
+    setAuthToken(localStorage.jwtToken);
+    // Decode token and get user info and exp
+    const decoded=jwt_decode(localStorage.jwtToken);
+    // Set user and isAuthenticated
+    store.dispatch(setCurrentUser(decoded));
+}
+
 
 // Page Output
 class App extends Component {
