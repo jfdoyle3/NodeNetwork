@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   render() {
-    componentDidMount(){
-        this.props.getCurrentProfile();
-    }
-    return <div>
+    return (
+      <div>
         <h1>boo! dashboard</h1>
-    </div>;
+      </div>
+    );
   }
 }
 
