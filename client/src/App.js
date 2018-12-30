@@ -4,8 +4,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 
-// Functions
+// Actions
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { clearCurrentProfile } from "./actions/profileActions";
+
+// Functions
 import setAuthToken from "./utils/setAuthToken";
 
 // Redux Store
@@ -24,22 +27,14 @@ import "./App.css";
 
 // Check for Token
 if (localStorage.jwtToken) {
-  // Set auth token header auth
-  setAuthToken(localStorage.jwtToken);
-  // Decode token and get user info and exp
-  const decoded = jwt_decode(localStorage.jwtToken);
-  // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
-
-  // Check for ecpired token
-  const currentTime = Date.now() / 1000;
+  setAuthToken(localStorage.jwtToken); // Set auth token header auth
+  const decoded = jwt_decode(localStorage.jwtToken); // Decode token and get user info and exp
+  store.dispatch(setCurrentUser(decoded)); // Set user and isAuthenticated
+  const currentTime = Date.now() / 1000; // Check for expired token
   if (decoded.exp < currentTime) {
-    //Logout User
-    store.dispatch(logoutUser());
-    // TODO: clear Profile
-
-    // Redirect to Login
-    window.location.href = "/login";
+    store.dispatch(logoutUser()); //Logout User
+    store.dispatch(clearCurrentProfile()); // Clear Profile
+    window.location.href = "/login"; // Redirect to Login
   }
 }
 
