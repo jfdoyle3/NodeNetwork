@@ -1,6 +1,6 @@
 // Add ins
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 
@@ -13,6 +13,9 @@ import setAuthToken from "./utils/setAuthToken";
 
 // Redux Store
 import store from "./store";
+
+// Private Authentcated Route
+import PrivateRoute from "./components/common/PrivateRoute";
 
 // Components
 import Navbar from "./components/layout/Navbar";
@@ -50,7 +53,9 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </div>
