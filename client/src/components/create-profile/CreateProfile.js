@@ -39,7 +39,47 @@ class CreateProfile extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, displaySocialInputs } = this.state;
+    let socialInputs;
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <InputGroup
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value={this.state.twitter}
+            onChange={this.onChange}
+            error={errors.twitter}
+          />
+          <InputGroup
+            placeholder="Facebook Profile URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
+          />
+          <InputGroup
+            placeholder="You Tube Channel URL"
+            name="youtube"
+            icon="fab fa-youtube"
+            value={this.state.youtube}
+            onChange={this.onChange}
+            error={errors.youtube}
+          />
+          <InputGroup
+            placeholder="Intagram Page URL"
+            name="instagram"
+            icon="fab fa-instagram"
+            value={this.state.instagram}
+            onChange={this.onChange}
+            error={errors.instagram}
+          />
+        </div>
+      );
+    } else {
+    }
     const options = [
       { label: "* Select Professional Status", value: 0 },
       { label: "Developer", value: "Developer" },
@@ -128,6 +168,26 @@ class CreateProfile extends Component {
                   onChange={this.onChange}
                   error={errors.bio}
                   info="Tell us a little about yourself"
+                />
+
+                <div className="mbp-3">
+                  <button
+                    onClick={() => {
+                      this.setState(prevState => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="btn btn-light"
+                  >
+                    Add Social Network Links
+                  </button>
+                  <span className="text-muted">Optional</span>
+                </div>
+                {socialInputs}
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
                 />
               </form>
             </div>
