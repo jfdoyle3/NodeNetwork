@@ -7,10 +7,9 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 
 class CreateProfile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      displaySocialInputs: false,
       handle: "",
       company: "",
       website: "",
@@ -32,7 +31,8 @@ class CreateProfile extends Component {
   }
 
   onSubmit(e) {
-    e.prevent.default();
+    e.preventDefault();
+    console.log("submit");
   }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -53,7 +53,7 @@ class CreateProfile extends Component {
             error={errors.twitter}
           />
           <InputGroup
-            placeholder="Facebook Profile URL"
+            placeholder="Facebook Page URL"
             name="facebook"
             icon="fab fa-facebook"
             value={this.state.facebook}
@@ -78,7 +78,6 @@ class CreateProfile extends Component {
           />
         </div>
       );
-    } else {
     }
     const options = [
       { label: "* Select Professional Status", value: 0 },
