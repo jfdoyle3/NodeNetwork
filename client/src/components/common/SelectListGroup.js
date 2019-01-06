@@ -3,7 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 
 const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
-  const SelectOptions = options.map(option => (
+  const selectOptions = options.map(option => (
     <option key={option.label} value={option.value}>
       {option.label}
     </option>
@@ -18,7 +18,7 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
         value={value}
         onChange={onChange}
       >
-        {SelectOptions}
+        {selectOptions}
       </select>
       {info && <small className="form-text text-muted">{info}</small>}
       {error && <div className="invalid-feedback">{error}</div>}
