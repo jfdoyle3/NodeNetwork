@@ -10,7 +10,7 @@ class AddExperience extends Compnonent {
   constructor(props) {
     super(props);
     this.state = {
-      comapny: "",
+      company: "",
       title: "",
       location: "",
       from: "",
@@ -24,11 +24,16 @@ class AddExperience extends Compnonent {
     this.onSubmit = this.onSubmit.bind(this);
     this.onCheck = this.onCheck.bind(this);
   }
-
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.errors){
+      this.setState(errors: nextProps.errors)
+    }
+  }
+  
   onSubmit(e) {
     e.preventDefault();
     const expData = {
-      title: this.state.company,
+      title: this.state.title,
       company: this.state.company,
       location: this.state.location,
       from: this.state.from,
