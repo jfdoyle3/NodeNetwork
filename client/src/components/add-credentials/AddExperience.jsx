@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import TextFieldGroup from "../common/TextFieldGroup";
-import TextAreaGroup from "../common/TextAreaGroup";
+import { TextFieldGroup } from "../common/TextFieldGroup";
+import { TextAreaGroup } from "../common/TextAreaGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addExperience } from "../../action/profileActions";
+import { addExperience } from "../../actions/profile/profileActions";
 
-class AddExperience extends Compnonent {
+class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,44 +16,10 @@ class AddExperience extends Compnonent {
       from: "",
       to: "",
       current: false,
-      discription: "",
+      description: "",
       error: {},
       disable: false
     };
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onCheck = this.onCheck.bind(this);
-  }
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.errors){
-      this.setState(errors: nextProps.errors)
-    }
-  }
-  
-  onSubmit(e) {
-    e.preventDefault();
-    const expData = {
-      title: this.state.title,
-      company: this.state.company,
-      location: this.state.location,
-      from: this.state.from,
-      to: this.state.to,
-      current: this.state.current,
-      description: this.state.description
-    };
-
-    this.props.addExperience(expData, this.props.history);
-  }
-
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  oncheck(e) {
-    this.setState({
-      disable: !this.state.disabled,
-      current: !this.state.current
-    });
   }
   render() {
     const { errors } = this.state;
