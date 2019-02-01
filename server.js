@@ -1,11 +1,11 @@
-// Initialise modules
+// Initialize modules
 const express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
   // colorize fonts
   colors = require("colors"),
-  // green checkmark / red x-mark / i info
+  // green check-mark / red x-mark / i info
   pass = "\u2713".green,
   fail = "\u2715".red,
   info = "[i]",
@@ -18,10 +18,7 @@ const express = require("express"),
   // Database Key & Connections
   db = require("./config/keys").mongoURI;
 mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+  .connect(db, { useNewUrlParser: true })
   .then(() => console.log("[" + pass + "] MongoDB connected"))
   .catch(err => console.log(err));
 
