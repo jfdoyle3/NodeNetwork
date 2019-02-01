@@ -47,7 +47,7 @@ class CreateProfile extends Component {
       location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
-      githuusername: this.state.githuusername,
+      githubusername: this.state.githubusername,
       bio: this.state.bio,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
@@ -107,13 +107,16 @@ class CreateProfile extends Component {
     const options = [
       { label: "* Select Professional Status", value: 0 },
       { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junoir Developer" },
+      { label: "Junior Developer", value: "Junior Developer" },
       { label: "Senior Developer", value: "Senior Developer" },
       { label: "Manager", value: "Manager" },
       { label: "Student or Learning", value: "Student or Learning" },
       { label: "Instructor or Teacher", value: "Instructor or Teacher" },
       { label: "Intern", value: "Intern" },
-      { label: "CareerDevs", value: "CareerDevs" },
+      {
+        label: "CareerDevs University Student",
+        value: "CareerDevs University Student"
+      },
       { label: "Other", value: "Other" }
     ];
 
@@ -134,7 +137,7 @@ class CreateProfile extends Component {
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. You full name, compamy name, nickname"
+                  info="A unique handle for your profile URL. You full name, company name, nickname"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -183,7 +186,7 @@ class CreateProfile extends Component {
                   value={this.state.githubusername}
                   onChange={this.onChange}
                   error={errors.githubusername}
-                  info="If you want your latest repos and a Github link, include your username"
+                  info="If you want your latest repository and a Github link, include your username"
                 />
                 <TextAreaFieldGroup
                   placeholder="Short Bio"

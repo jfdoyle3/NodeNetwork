@@ -90,12 +90,12 @@ class AddExperience extends Component {
                     </label>
                   </div>
                   <TextFieldGroup
-                    placeholder="Job Descriptio"
+                    placeholder="Job Description"
                     name="description"
                     value={this.state.description}
                     onChange={this.onChange}
                     error={errors.description}
-                    info="Some of your responsabilities, etc"
+                    info="Some of your responsibilities, etc"
                   />
                   <input
                     type="submit"

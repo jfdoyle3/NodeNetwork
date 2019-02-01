@@ -6,17 +6,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addEducation } from "../../action/profileActions";
 
-class AddEducation extends Compnonent {
+class AddEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       school: "",
-      title: "",
-      location: "",
+      degree: "",
+      fieldofstudy: "",
       from: "",
       to: "",
       current: false,
-      discription: "",
+      description: "",
       error: {},
       disable: false
     };
@@ -24,18 +24,18 @@ class AddEducation extends Compnonent {
     this.onSubmit = this.onSubmit.bind(this);
     this.onCheck = this.onCheck.bind(this);
   }
-  componentWillReceiveProps = (nextProps) => {
-    if (nextProps.errors){
-      this.setState(errors: nextProps.errors)
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState(errors: nextProps.errors);
     }
-  }
-  
+  };
+
   onSubmit(e) {
     e.preventDefault();
     const expData = {
       school: this.state.school,
-      school: this.state.school,
-      location: this.state.location,
+      degree: this.state.degree,
+      fieldofstudy: this.state.fieldofstudy,
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
@@ -49,7 +49,7 @@ class AddEducation extends Compnonent {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  oncheck(e) {
+  onCheck(e) {
     this.setState({
       disable: !this.state.disabled,
       current: !this.state.current
@@ -124,12 +124,12 @@ class AddEducation extends Compnonent {
                     </label>
                   </div>
                   <TextFieldGroup
-                    placeholder="Job Descriptio"
+                    placeholder="Job Description"
                     name="description"
                     value={this.state.description}
                     onChange={this.onChange}
                     error={errors.description}
-                    info="Some of your responsabilities, etc"
+                    info="Some of your responsibilities, etc"
                   />
                   <input
                     type="submit"
