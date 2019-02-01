@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { TextFieldGroup } from "../common/TextFieldGroup";
-import { TextAreaGroup } from "../common/TextAreaGroup";
+import TextFieldGroup from "../common/TextFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profile/profileActions";
@@ -18,9 +17,27 @@ class AddExperience extends Component {
       current: false,
       description: "",
       error: {},
-      disable: false
+      disabled: false
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onCheck(e) {
+    this.setState({
+      disabled: !this.state.disabled,
+      current: !this.state.current
+    });
+  }
+
   render() {
     const { errors } = this.state;
     return (
