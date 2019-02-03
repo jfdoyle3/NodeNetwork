@@ -14,7 +14,7 @@ import setAuthToken from "./utils/setAuthToken";
 // Redux Store
 import store from "./store";
 
-// Private Authentcated Route
+// Private Authenticated Route
 import PrivateRoute from "./components/common/PrivateRoute";
 
 // Components
@@ -27,6 +27,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
+import AddEducation from "./components/add-credentials/AddEducation";
 
 // Style Sheet
 import "./App.css";
@@ -78,6 +79,13 @@ class App extends Component {
                   exact
                   path="/add-experience"
                   component={AddExperience}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddEducation}
                 />
               </Switch>
             </div>
