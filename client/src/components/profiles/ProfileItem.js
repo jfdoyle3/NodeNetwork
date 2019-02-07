@@ -28,11 +28,25 @@ class ProfileItem extends Component {
             <Link to={`/profile/${profile.handle}`} className="btn btn-info">
               View Profile
             </Link>
-            <div className="col-md-4"
+          </div>
+          <div className="col-md-4 d-none d-md-block">
+            <h4>Skill Set</h4>
+            <ul className="list-group">
+              {profile.skills.slice(0, 4).map((skills, index) => (
+                <li key={index} className="list-group-item">
+                  <i className="fa fa-check pr-1" />
+                  {skills}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
     );
   }
 }
+
+ProfileItem.propTypes = {
+  profile: PropTypes.object.isRequired
+};
 export default ProfileItem;
