@@ -17,9 +17,16 @@ class Profile extends Component {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.profile.profile.loading) {
+      this.props.history.push("/not-found");
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
+
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
@@ -45,6 +52,7 @@ class Profile extends Component {
         </div>
       );
     }
+
     return (
       <div className="profile">
         <div className="container">
