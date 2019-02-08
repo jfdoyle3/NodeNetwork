@@ -114,7 +114,7 @@ router.post(
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
     if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-    if (req.body.facebook) profileFields.social.facebooke = req.body.facebook;
+    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
     if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
@@ -135,7 +135,7 @@ router.post(
             errors.handle = "That handle already exist";
             res.json(404).json(errors);
           }
-          // save prpfile
+          // save profile
           new Profile(profileFields).save().then(profile => res.json(profile));
         });
       }
@@ -226,7 +226,7 @@ router.delete(
   }
 );
 
-// DELETE educstion/:exp_id
+// DELETE education/:exp_id
 //
 // Private
 router.delete(

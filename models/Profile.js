@@ -26,7 +26,7 @@ const mongoose = require("mongoose"),
     },
     skills: {
       type: [String],
-      requred: true
+      required: true
     },
     bio: {
       type: String
@@ -58,7 +58,7 @@ const mongoose = require("mongoose"),
           type: Boolean,
           default: false
         },
-        discription: {
+        description: {
           type: String
         }
       }
@@ -88,7 +88,7 @@ const mongoose = require("mongoose"),
           type: Boolean,
           default: false
         },
-        discription: {
+        description: {
           type: String
         }
       }
@@ -100,7 +100,7 @@ const mongoose = require("mongoose"),
       twitter: {
         type: String
       },
-      yfacebook: {
+      facebook: {
         type: String
       },
       linkedin: {
