@@ -36,9 +36,9 @@ module.exports = function validateProfileInput(data) {
       errors.twitter = "Not a valid URL";
     }
   }
-  if (!isEmpty(data.fackbook)) {
-    if (!Validator.isURL(data.fackbook)) {
-      errors.fackbook = "Not a valid URL";
+  if (!isEmpty(data.facebook)) {
+    if (!Validator.isURL(data.facebook)) {
+      errors.facebook = "Not a valid URL";
     }
   }
   if (!isEmpty(data.linkedin)) {

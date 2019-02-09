@@ -5,7 +5,7 @@ const express = require("express"),
   // Model
   Post = require("../../models/Post"),
   Profile = require("../../models/Profile");
-// Vslidation
+// Validation
 validatePostInput = require("../../validation/post");
 // GET: test
 // Public
@@ -120,7 +120,7 @@ router.post(
               .status(400)
               .json({ fail: "User hasn't liked this post yet" });
           }
-          //get removd index
+          //get removed index
           const removeIndex = post.likes
             .map(item => item.user.toString())
             .indexOf(req.user.id);

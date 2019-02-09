@@ -11,12 +11,12 @@ const express = require("express"),
   validateLoginInput = require("../../validation/login");
 
 // Route: GET Login
-// Desc:  Login User / Retirn JWT Token
+// Desc:  Login User / Return JWT Token
 // Access: Public
 router.get("/test", (req, res) => res.json({ success: "Users Works" }));
 
 // Route: GET Login
-// Desc:  Login User / Retirn JWT Token
+// Desc:  Login User / Return JWT Token
 // Access: Public
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -59,7 +59,7 @@ router.post("/register", (req, res) => {
 });
 
 // Route: GET Login
-// Desc:  Login User / Retirn JWT Token
+// Desc:  Login User / Return JWT Token
 // Access: Public
 
 router.post("/login", (req, res) => {
