@@ -16,7 +16,7 @@ const mongoose = require("mongoose"),
     avatar: {
       type: String
     },
-    like: [
+    likes: [
       {
         user: {
           type: Schema.Types.ObjectId,
