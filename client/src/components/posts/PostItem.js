@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import { deletePosts, addLike, removeLike } from "../../actions/postActions";
+import { deletePost, addLike, removeLike } from "../../actions/postActions";
 
 class PostItem extends Component {
   onDeleteClick(id) {
@@ -71,7 +71,7 @@ class PostItem extends Component {
                     type="button"
                     className="btn btn-danger mr-1"
                   >
-                    <i className="fas fa-times" />>
+                    <i className="fas fa-times" />
                   </button>
                 ) : null}
               </span>
@@ -100,5 +100,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deletePosts, addLike, removeLike }
+  { deletePost, addLike, removeLike }
 )(PostItem);
