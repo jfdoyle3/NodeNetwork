@@ -86,7 +86,7 @@ router.post(
       Post.findById(req.params.id)
         .then(post => {
           if (
-            posts.likes.filter(like => like.user.toString() === req.user.id)
+            post.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
             return res
@@ -106,19 +106,19 @@ router.post(
 // unlike post
 //private
 router.post(
-  "/like/:id",
+  "/unlike/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.id)
         .then(post => {
           if (
-            posts.like.filter(like => like.user.toString() === req.user.id)
-              .length > 0
+            post.likes.filter(like => like.user.toString() === req.user.id)
+              .length === 0
           ) {
             return res
               .status(400)
-              .json({ fail: "User hasn't liked this post yet" });
+              .json({ fail: "You have not liked this post yet" });
           }
           //get removed index
           const removeIndex = post.likes
