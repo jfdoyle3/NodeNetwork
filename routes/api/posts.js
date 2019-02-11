@@ -86,7 +86,7 @@ router.post(
       Post.findById(req.params.id)
         .then(post => {
           if (
-            posts.like.filter(like => like.user.toString() === req.user.id)
+            posts.likes.filter(like => like.user.toString() === req.user.id)
               .length > 0
           ) {
             return res

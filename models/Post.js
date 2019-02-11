@@ -24,7 +24,7 @@ const mongoose = require("mongoose"),
         }
       }
     ],
-    comment: [
+    comments: [
       {
         user: {
           type: Schema.Types.ObjectId,
