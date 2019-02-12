@@ -6,8 +6,8 @@ module.exports = function validatePostInput(data) {
 
   data.text = !isEmpty(data.text) ? data.text : "";
 
-  if (!Validator.isLength(data.text, { min: 10, max: 300 })) {
-    errors.text = "Post must be a minimum of 10 and max 300 characters";
+  if (!Validator.isLength(data.text, { min: 5, max: 300 })) {
+    errors.text = "Post must be a minimum of 5 and max 300 characters";
   }
 
   if (Validator.isEmpty(data.text)) {

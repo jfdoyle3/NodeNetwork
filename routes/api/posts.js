@@ -10,6 +10,7 @@ validatePostInput = require("../../validation/post");
 // GET: test
 // Public
 router.get("/test", (req, res) => res.json({ success: "Posts Works" }));
+
 // GET api/post/
 // get all
 // public
@@ -23,7 +24,7 @@ router.get("/", (req, res) => {
 // GET api/post/ id
 //
 // public
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.status(404).json({ fail: "Post Id does not exist" }));

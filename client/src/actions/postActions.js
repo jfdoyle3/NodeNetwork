@@ -112,7 +112,7 @@ export const setPostLoading = () => {
 };
 
 // Add Comment
-export const addPost = (postId,commentData) => dispatch => {
+export const addComment = (postId, commentData) => dispatch => {
   axios
     .post(`/api/posts/comments/${postId}`, commentData)
     .then(res =>
