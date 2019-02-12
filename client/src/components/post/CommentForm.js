@@ -20,13 +20,13 @@ class CommentForm extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    const { user } = this.props.auth;
-    const { postId } = this.props;
-    const newComment = {
-      text: this.state.text,
-      name: user.name,
-      avatar: user.avatar
-    };
+    const { user } = this.props.auth,
+      { postId } = this.props,
+      newComment = {
+        text: this.state.text,
+        name: user.name,
+        avatar: user.avatar
+      };
     this.props.addComment(postId, newComment);
     this.setState({ text: "" });
   }
