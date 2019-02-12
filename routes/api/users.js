@@ -13,11 +13,6 @@ const express = require("express"),
 // Route: GET Login
 // Desc:  Login User / Return JWT Token
 // Access: Public
-router.get("/test", (req, res) => res.json({ success: "Users Works" }));
-
-// Route: GET Login
-// Desc:  Login User / Return JWT Token
-// Access: Public
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 

@@ -7,10 +7,6 @@ const express = require("express"),
   Profile = require("../../models/Profile");
 // Validation
 validatePostInput = require("../../validation/post");
-// GET: test
-// Public
-router.get("/test", (req, res) => res.json({ success: "Posts Works" }));
-
 // GET api/post/
 // get all
 // public

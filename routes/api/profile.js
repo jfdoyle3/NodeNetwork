@@ -10,11 +10,6 @@ const express = require("express"),
   Profile = require("../../models/Profile"),
   User = require("../../models/User");
 
-// GET: test
-//
-// Public
-router.get("/test", (req, res) => res.json({ success: "Profile Works" }));
-
 // GET: Profile
 //
 //private
