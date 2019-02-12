@@ -78,10 +78,10 @@ class Login extends Component {
                   label="Submit"
                   className="btn btn-info btn-block mt-4"
                 />
-              </form>{" "}
-            </div>{" "}
-          </div>{" "}
-        </div>{" "}
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
