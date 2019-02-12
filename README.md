@@ -11,7 +11,7 @@ User can register and login into app and logout.
 
 TODO:
 HTTP:// to all web addresses user doesn't have to type it in
-Edit/pencil button to edit dashboard items / change delete button to X
+Edit/pencil button to edit dashboard items
 new spinner
 add green tint to site
 change post text requirements
