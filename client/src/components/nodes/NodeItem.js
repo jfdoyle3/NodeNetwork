@@ -3,36 +3,32 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import isEmpty from "../../validation/is-empty";
 
-class ProfileItem extends Component {
+class NodeItem extends Component {
   render() {
-    const { profile } = this.props;
+    const { node } = this.props;
     return (
       <div className="card card-body bg-light mb-3">
         <div className="row">
           <div className="col-2">
-            <img src={profile.user.avatar} alt="" className="rounded-circle" />
+            <img src={node.user.avatar} alt="" className="rounded-circle" />
           </div>
           <div className="col-lg-6 col-md-4 col-8">
-            <h3>{profile.user.name}</h3>
+            <h3>{node.user.name}</h3>
             <p>
-              {profile.status}
-              {isEmpty(profile.company) ? null : (
-                <span> at {profile.company}</span>
-              )}
+              {node.status}
+              {isEmpty(node.company) ? null : <span> at {node.company}</span>}
             </p>
             <p>
-              {isEmpty(profile.location) ? null : (
-                <span>{profile.location}</span>
-              )}
+              {isEmpty(node.location) ? null : <span>{node.location}</span>}
             </p>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-info">
-              View Profile
+            <Link to={`/node/${node.handle}`} className="btn btn-info">
+              View Node
             </Link>
           </div>
           <div className="col-md-4 d-none d-md-block">
             <h4>Skill Set</h4>
             <ul className="list-group">
-              {profile.skills.slice(0, 4).map((skills, index) => (
+              {node.skills.slice(0, 4).map((skills, index) => (
                 <li key={index} className="list-group-item">
                   <i className="fa fa-check pr-1" />
                   {skills}
@@ -46,7 +42,7 @@ class ProfileItem extends Component {
   }
 }
 
-ProfileItem.propTypes = {
-  profile: PropTypes.object.isRequired
+NodeItem.propTypes = {
+  node: PropTypes.object.isRequired
 };
-export default ProfileItem;
+export default NodeItem;

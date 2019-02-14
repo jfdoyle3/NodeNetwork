@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 
-class ProfileCreds extends Component {
+class NodeCreds extends Component {
   render() {
     const { experience, education } = this.props;
     const expItems = experience.map(exp => (
@@ -88,4 +88,4 @@ class ProfileCreds extends Component {
     );
   }
 }
-export default ProfileCreds;
+export default NodeCreds;

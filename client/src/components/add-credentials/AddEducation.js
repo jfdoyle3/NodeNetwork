@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addEducation } from "../../actions/profileActions";
+import { addEducation } from "../../actions/nodeActions";
 
 class AddEducation extends Component {
   constructor(props) {
@@ -146,11 +146,11 @@ class AddEducation extends Component {
 }
 AddEducation.propTypes = {
   addEducation: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+  node: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  profile: state.profile,
+  node: state.node,
   errors: state.errors
 });
 export default connect(

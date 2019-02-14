@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-class ProfilesGithub extends Component {
+class NodesGithub extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,7 +67,7 @@ class ProfilesGithub extends Component {
     );
   }
 }
-ProfilesGithub.propTypes = {
+NodesGithub.propTypes = {
   username: PropTypes.string.isRequired
 };
-export default ProfilesGithub;
+export default NodesGithub;

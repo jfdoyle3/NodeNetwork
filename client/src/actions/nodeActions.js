@@ -1,55 +1,55 @@
 import axios from "axios";
 
 import {
-  GET_PROFILE,
-  GET_PROFILES,
-  PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE,
+  GET_NODE,
+  GET_NODES,
+  NODE_LOADING,
+  CLEAR_CURRENT_NODE,
   GET_ERRORS,
   SET_CURRENT_USER
 } from "./types";
 
-// Get Current Profile
-export const getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading());
+// Get Current Node
+export const getCurrentNode = () => dispatch => {
+  dispatch(setNodeLoading());
   axios
-    .get("/api/profile")
+    .get("/api/node")
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: {}
       })
     );
 };
-// Get Profile By Handle
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(setProfileLoading());
+// Get Node By Handle
+export const getNodeByHandle = handle => dispatch => {
+  dispatch(setNodeLoading());
   axios
-    .get(`/api/profile/handle/${handle}`)
+    .get(`/api/node/handle/${handle}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: null
       })
     );
 };
 
-// Create Profile
-export const createProfile = (profileData, history) => dispatch => {
+// Create Node
+export const createNode = (nodeData, history) => dispatch => {
   axios
-    .post("/api/profile", profileData)
+    .post("/api/node", nodeData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -62,7 +62,7 @@ export const createProfile = (profileData, history) => dispatch => {
 // Add Experience
 export const addExperience = (expData, history) => dispatch => {
   axios
-    .post("api/profile/experience", expData)
+    .post("api/node/experience", expData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -75,7 +75,7 @@ export const addExperience = (expData, history) => dispatch => {
 // Add Education
 export const addEducation = (eduData, history) => dispatch => {
   axios
-    .post("api/profile/education", eduData)
+    .post("api/node/education", eduData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -88,10 +88,10 @@ export const addEducation = (eduData, history) => dispatch => {
 // Delete Experience
 export const deleteExperience = id => dispatch => {
   axios
-    .delete(`api/profile/experience/${id}`)
+    .delete(`api/node/experience/${id}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: res.data
       })
     )
@@ -105,10 +105,10 @@ export const deleteExperience = id => dispatch => {
 // Delete Education
 export const deleteEducation = id => dispatch => {
   axios
-    .delete(`api/profile/education/${id}`)
+    .delete(`api/node/education/${id}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_NODE,
         payload: res.data
       })
     )
@@ -119,30 +119,30 @@ export const deleteEducation = id => dispatch => {
       })
     );
 };
-// Get all Profiles
-export const getProfiles = () => dispatch => {
-  dispatch(setProfileLoading());
+// Get all Nodes
+export const getNodes = () => dispatch => {
+  dispatch(setNodeLoading());
   axios
-    .get("api/profile/all")
+    .get("api/node/all")
     .then(res =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_NODES,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILES,
+        type: GET_NODES,
         payload: null
       })
     );
 };
 
-// Delete account and Profile
+// Delete account and Node
 export const deleteAccount = () => dispatch => {
   if (window.confirm("Are you sure? This can't be undone")) {
     axios
-      .delete("/api/profile")
+      .delete("/api/node")
       .then(res =>
         dispatch({
           type: SET_CURRENT_USER,
@@ -158,15 +158,15 @@ export const deleteAccount = () => dispatch => {
   }
 };
 
-// Profile Loading
-export const setProfileLoading = () => {
+// Node Loading
+export const setNodeLoading = () => {
   return {
-    type: PROFILE_LOADING
+    type: NODE_LOADING
   };
 };
-// Clear profile
-export const clearCurrentProfile = () => {
+// Clear node
+export const clearCurrentNode = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE
+    type: CLEAR_CURRENT_NODE
   };
 };

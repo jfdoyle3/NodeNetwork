@@ -16,5 +16,3 @@ new spinner
 add green tint to site
 change post text requirements
 change variables/ Wording on UI
-
-https://arcane-lowlands-76837.herokuapp.com/

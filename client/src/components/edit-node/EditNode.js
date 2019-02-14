@@ -6,10 +6,10 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-import { createProfile, getCurrentProfile } from "../../actions/profileActions";
+import { createNode, getCurrentNode } from "../../actions/nodeActions";
 import isEmpty from "../../validation/is-empty";
 
-class CreateProfile extends Component {
+class CreateNode extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,57 +34,53 @@ class CreateProfile extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.getCurrentNode();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
 
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
+    if (nextProps.node.node) {
+      const node = nextProps.node.node;
       // bring skills
-      const skillsCSV = profile.skills.join(",");
+      const skillsCSV = node.skills.join(",");
 
-      // If Profile field doesn't exist, make it empty PropTypes.string
-      profile.company = !isEmpty(profile.company) ? profile.company : "";
-      profile.website = !isEmpty(profile.website) ? profile.website : "";
-      profile.location = !isEmpty(profile.location) ? profile.location : "";
-      profile.githubusername = !isEmpty(profile.githubusername)
-        ? profile.githubusername
+      // If Node field doesn't exist, make it empty PropTypes.string
+      node.company = !isEmpty(node.company) ? node.company : "";
+      node.website = !isEmpty(node.website) ? node.website : "";
+      node.location = !isEmpty(node.location) ? node.location : "";
+      node.githubusername = !isEmpty(node.githubusername)
+        ? node.githubusername
         : "";
-      profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
-      profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.twitter = !isEmpty(profile.social.twitter)
-        ? profile.social.twitter
+      node.bio = !isEmpty(node.bio) ? node.bio : "";
+      node.social = !isEmpty(node.social) ? node.social : {};
+      node.twitter = !isEmpty(node.social.twitter) ? node.social.twitter : "";
+      node.facebook = !isEmpty(node.social.facebook)
+        ? node.social.facebook
         : "";
-      profile.facebook = !isEmpty(profile.social.facebook)
-        ? profile.social.facebook
+      node.linkedin = !isEmpty(node.social.linkedin)
+        ? node.social.linkedin
         : "";
-      profile.linkedin = !isEmpty(profile.social.linkedin)
-        ? profile.social.linkedin
-        : "";
-      profile.youtube = !isEmpty(profile.social.youtube)
-        ? profile.social.youtube
-        : "";
-      profile.instagram = !isEmpty(profile.social.instagram)
-        ? profile.social.instagram
+      node.youtube = !isEmpty(node.social.youtube) ? node.social.youtube : "";
+      node.instagram = !isEmpty(node.social.instagram)
+        ? node.social.instagram
         : "";
       // Set component fields state
       this.setState({
-        handle: profile.handle,
-        company: profile.company,
-        website: profile.website,
-        location: profile.location,
-        status: profile.status,
+        handle: node.handle,
+        company: node.company,
+        website: node.website,
+        location: node.location,
+        status: node.status,
         skills: skillsCSV,
-        githubusername: profile.githubusername,
-        bio: profile.bio,
-        twitter: profile.twitter,
-        facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube,
-        instagram: profile.instagram
+        githubusername: node.githubusername,
+        bio: node.bio,
+        twitter: node.twitter,
+        facebook: node.facebook,
+        linkedin: node.linkedin,
+        youtube: node.youtube,
+        instagram: node.instagram
       });
     }
   }
@@ -92,7 +88,7 @@ class CreateProfile extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
+    const nodeData = {
       handle: this.state.handle,
       company: this.state.company,
       website: this.state.website,
@@ -108,7 +104,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.createNode(nodeData, this.props.history);
   }
 
   onChange(e) {
@@ -122,7 +118,7 @@ class CreateProfile extends Component {
       socialInputs = (
         <div>
           <InputGroup
-            placeholder="Twitter Profile URL"
+            placeholder="Twitter Node URL"
             name="twitter"
             icon="fab fa-twitter"
             value={this.state.twitter}
@@ -159,7 +155,7 @@ class CreateProfile extends Component {
     const options = [
       { label: "* Select Professional Status", value: 0 },
       { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junoir Developer" },
+      { label: "Junior Developer", value: "Junior Developer" },
       { label: "Senior Developer", value: "Senior Developer" },
       { label: "Manager", value: "Manager" },
       { label: "Student or Learning", value: "Student or Learning" },
@@ -170,23 +166,23 @@ class CreateProfile extends Component {
     ];
 
     return (
-      <div className="create-profile">
+      <div className="create-node">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Edit Profile</h1>
+              <h1 className="display-4 text-center">Edit Node</h1>
               <small className="d-block pb-3">*=required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
+                  placeholder="* Node Handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. You full name, compamy name, nickname"
+                  info="A unique handle for your node URL. You full name, company name, nickname"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -275,19 +271,19 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+CreateNode.propTypes = {
+  createNode: PropTypes.func.isRequired,
+  getCurrentNode: PropTypes.func.isRequired,
+  node: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  node: state.node,
   errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { createProfile, getCurrentProfile }
-)(withRouter(CreateProfile));
+  { createNode, getCurrentNode }
+)(withRouter(CreateNode));
