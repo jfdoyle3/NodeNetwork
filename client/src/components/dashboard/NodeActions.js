@@ -5,7 +5,7 @@ const NodeActions = () => {
   return (
     <div className="btn-group mb-4" role="group">
       <Link to="/edit-node" className="btn btn-light">
-        <i className="fas fa-user-circle text-info mr-1" /> Edit Node
+        <i className="fas fa-user-circle text-info mr-1" /> Edit your Node
       </Link>
       <Link to="/add-experience" className="btn btn-light">
         <i className="fab fa-black-tie text-info mr-1" />

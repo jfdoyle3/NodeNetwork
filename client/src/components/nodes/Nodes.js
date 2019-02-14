@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import NodeItem from "./NodeItem";
@@ -18,7 +19,13 @@ class Nodes extends Component {
       if (nodes.length > 0) {
         nodeItems = nodes.map(node => <NodeItem key={node.id} node={node} />);
       } else {
-        nodeItems = <h4>Node not found...</h4>;
+        nodeItems = (
+          <h4>
+            No Coders...
+            <br />
+            Be the first to <Link to="/register">Sign Up</Link>
+          </h4>
+        );
       }
     }
     return (
@@ -26,10 +33,8 @@ class Nodes extends Component {
         <div className="container">
           <div className="row">
             <div className="col-mid-12">
-              <h1 className="display-4 text-center">Developer Nodes</h1>
-              <p className="lead text-center">
-                Browse and connect with developers
-              </p>
+              <h1 className="display-4 text-center">Coders</h1>
+              <p className="lead text-center">Browse and connect with coders</p>
               {nodeItems}
             </div>
           </div>
