@@ -4,9 +4,13 @@ const express = require("express"),
   passport = require("passport"),
   // Model
   Post = require("../../models/Post"),
-  Profile = require("../../models/Profile");
+  Node = require("../../models/Node");
 // Validation
 validatePostInput = require("../../validation/post");
+// GET: test
+// Public
+router.get("/test", (req, res) => res.json({ success: "Posts Works" }));
+
 // GET api/post/
 // get all
 // public
@@ -57,7 +61,7 @@ router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Node.findOne({ user: req.user.id }).then(node => {
       Post.findById(req.params.id)
         .then(post => {
           // check owner
@@ -79,7 +83,7 @@ router.post(
   "/like/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Node.findOne({ user: req.user.id }).then(node => {
       Post.findById(req.params.id)
         .then(post => {
           if (
@@ -106,7 +110,7 @@ router.post(
   "/unlike/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
+    Node.findOne({ user: req.user.id }).then(node => {
       Post.findById(req.params.id)
         .then(post => {
           if (

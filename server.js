@@ -3,7 +3,6 @@ const express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
-  path = require("path"),
   // colorize fonts
   colors = require("colors"),
   // green check-mark / red x-mark / i info
@@ -14,7 +13,7 @@ const express = require("express"),
   app = express(),
   // Routes
   users = require("./routes/api/users"),
-  profile = require("./routes/api/profile"),
+  node = require("./routes/api/node"),
   posts = require("./routes/api/posts"),
   // Database Key & Connections
   db = require("./config/keys").mongoURI;
@@ -33,17 +32,8 @@ require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
-app.use("/api/profile", profile);
+app.use("/api/node", node);
 app.use("/api/posts", posts);
-
-// Server static assets if in production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static("client/build"));
-}
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-});
 
 //Port
 const port = process.env.PORT || 8080;

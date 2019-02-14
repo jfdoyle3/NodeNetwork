@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import isEmpty from "../../validation/is-empty";
 
-class ProfileHeader extends Component {
+class NodeHeader extends Component {
   render() {
-    const { profile } = this.props;
+    const { node } = this.props;
     return (
       <div className="row">
         <div className="col-md-12">
@@ -12,70 +12,70 @@ class ProfileHeader extends Component {
               <div className="col-4 col-md-3 m-auto">
                 <img
                   className="rounded-circle"
-                  src={profile.user.avatar}
+                  src={node.user.avatar}
                   alt=""
                 />
               </div>
             </div>
             <div className="text-center">
-              <h1 className="display-4 text-center">{profile.user.name}</h1>
+              <h1 className="display-4 text-center">{node.user.name}</h1>
               <p className="lead text-center">
-                {profile.status}{" "}
-                {isEmpty(profile.company) ? null : (
-                  <span>at {profile.company}</span>
+                {node.status}{" "}
+                {isEmpty(node.company) ? null : (
+                  <span>at {node.company}</span>
                 )}
               </p>
-              {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+              {isEmpty(node.location) ? null : <p>{node.location}</p>}
               <p>
-                {isEmpty(profile.website) ? null : (
+                {isEmpty(node.website) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.website}
+                    href={node.website}
                     target="_blank"
                   >
                     <i className="fas fa-globe fa-2x" />
                   </a>
                 )}
-                {isEmpty(profile.social && profile.social.twitter) ? null : (
+                {isEmpty(node.social && node.social.twitter) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.social.twitter}
+                    href={node.social.twitter}
                     target="_blank"
                   >
                     <i className="fab fa-twitter fa-2x" />
                   </a>
                 )}
-                {isEmpty(profile.social && profile.social.facebook) ? null : (
+                {isEmpty(node.social && node.social.facebook) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.social.facebook}
+                    href={node.social.facebook}
                     target="_blank"
                   >
                     <i className="fab fa-facebook fa-2x" />
                   </a>
                 )}
-                {isEmpty(profile.social && profile.social.linkedin) ? null : (
+                {isEmpty(node.social && node.social.linkedin) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.social.linkedin}
+                    href={node.social.linkedin}
                     target="_blank"
                   >
                     <i className="fab fa-linkedin fa-2x" />
                   </a>
                 )}
-                {isEmpty(profile.social && profile.social.youtube) ? null : (
+                {isEmpty(node.social && node.social.youtube) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.social.youtube}
+                    href={node.social.youtube}
                     target="_blank"
                   >
                     <i className="fab fa-youtube fa-2x" />
                   </a>
                 )}
-                {isEmpty(profile.social && profile.social.instagram) ? null : (
+                {isEmpty(node.social && node.social.instagram) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.social.instagram}
+                    href={node.social.instagram}
                     target="_blank"
                   >
                     <i className="fab fa-instagram fa-2x" />
@@ -89,4 +89,4 @@ class ProfileHeader extends Component {
     );
   }
 }
-export default ProfileHeader;
+export default NodeHeader;

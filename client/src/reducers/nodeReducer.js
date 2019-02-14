@@ -1,39 +1,39 @@
 import {
-  GET_PROFILE,
-  GET_PROFILES,
-  PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE
+  GET_NODE,
+  GET_NODES,
+  NODE_LOADING,
+  CLEAR_CURRENT_NODE
 } from "../actions/types";
 
 const initialState = {
-  profile: null,
-  profiles: null,
+  node: null,
+  nodes: null,
   loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case PROFILE_LOADING:
+    case NODE_LOADING:
       return {
         ...state,
         loading: true
       };
-    case GET_PROFILE:
+    case GET_NODE:
       return {
         ...state,
-        profile: action.payload,
+        node: action.payload,
         loading: false
       };
-    case GET_PROFILES:
+    case GET_NODES:
       return {
         ...state,
-        profiles: action.payload,
+        nodes: action.payload,
         loading: false
       };
-    case CLEAR_CURRENT_PROFILE:
+    case CLEAR_CURRENT_NODE:
       return {
         ...state,
-        profile: null
+        node: null
       };
     default:
       return state;

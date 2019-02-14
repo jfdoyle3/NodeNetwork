@@ -6,9 +6,9 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
-import { createProfile } from "../../actions/profileActions";
+import { createNode } from "../../actions/nodeActions";
 
-class CreateProfile extends Component {
+class CreateNode extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ class CreateProfile extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
+    const nodeData = {
       handle: this.state.handle,
       company: this.state.company,
       website: this.state.website,
@@ -56,7 +56,7 @@ class CreateProfile extends Component {
       instagram: this.state.instagram
     };
 
-    this.props.createProfile(profileData, this.props.history);
+    this.props.createNode(nodeData, this.props.history);
   }
 
   onChange(e) {
@@ -70,7 +70,7 @@ class CreateProfile extends Component {
       socialInputs = (
         <div>
           <InputGroup
-            placeholder="Twitter Profile URL"
+            placeholder="Twitter Node URL"
             name="twitter"
             icon="fab fa-twitter"
             value={this.state.twitter}
@@ -121,23 +121,23 @@ class CreateProfile extends Component {
     ];
 
     return (
-      <div className="create-profile">
+      <div className="create-node">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create your Profile</h1>
+              <h1 className="display-4 text-center">Create your Node</h1>
               <p className="lead text-center">
-                Let's get some information to make your profile stand out
+                Let's get some information to make your node stand out
               </p>
               <small className="d-block pb-3">*=required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
+                  placeholder="* Node Handle"
                   name="handle"
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for your profile URL. You full name, company name, nickname"
+                  info="A unique handle for your node URL. You full name, company name, nickname"
                 />
                 <SelectListGroup
                   placeholder="Status"
@@ -226,17 +226,17 @@ class CreateProfile extends Component {
   }
 }
 
-CreateProfile.propTypes = {
-  profile: PropTypes.object.isRequired,
+CreateNode.propTypes = {
+  node: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  node: state.node,
   errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { createProfile }
-)(withRouter(CreateProfile));
+  { createNode }
+)(withRouter(CreateNode));

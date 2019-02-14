@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import isEmpty from "../../validation/is-empty";
 
-class ProfilesAbout extends Component {
+class NodesAbout extends Component {
   render() {
-    const { profile } = this.props;
+    const { node } = this.props;
 
     // Get first name
-    const firstName = profile.user.name.trim().split(" ")[0];
+    const firstName = node.user.name.trim().split(" ")[0];
 
     // Skill List
-    const skills = profile.skills.map((skill, index) => (
+    const skills = node.skills.map((skill, index) => (
       <div key={index} className="p-3">
         <i className="fs fa-check" /> {skill}
       </div>
@@ -21,10 +21,10 @@ class ProfilesAbout extends Component {
           <div className="card card-body bg-light mb-3">
             <h3 className="text-center text-info">{firstName}'s' Bio</h3>
             <p className="lead">
-              {isEmpty(profile.bio) ? (
+              {isEmpty(node.bio) ? (
                 <span>{firstName} doesn't have a bio</span>
               ) : (
-                <span>{profile.bio}</span>
+                <span>{node.bio}</span>
               )}
             </p>
             <hr />
@@ -41,7 +41,7 @@ class ProfilesAbout extends Component {
   }
 }
 
-ProfilesAbout.propTypes = {
-  profile: PropTypes.object.isRequired
+NodesAbout.propTypes = {
+  node: PropTypes.object.isRequired
 };
-export default ProfilesAbout;
+export default NodesAbout;

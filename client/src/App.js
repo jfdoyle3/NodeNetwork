@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 
 // Actions
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import { clearCurrentProfile } from "./actions/profileActions";
+import { clearCurrentNode } from "./actions/nodeActions";
 
 // Functions
 import setAuthToken from "./utils/setAuthToken";
@@ -24,12 +24,12 @@ import Footer from "./components/layout/Footer";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateProfile from "./components/create-profile/CreateProfile";
-import EditProfile from "./components/edit-profile/EditProfile";
+import CreateNode from "./components/create-node/CreateNode";
+import EditNode from "./components/edit-node/EditNode";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
-import Profiles from "./components/profiles/Profiles";
-import Profile from "./components/profile/Profile";
+import Nodes from "./components/nodes/Nodes";
+import Node from "./components/node/Node";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
 import NotFound from "./components/not-found/NotFound";
@@ -45,7 +45,7 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000; // Check for expired token
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser()); //Logout User
-    store.dispatch(clearCurrentProfile()); // Clear Profile
+    store.dispatch(clearCurrentNode()); // Clear Node
     window.location.href = "/login"; // Redirect to Login
   }
 }
@@ -62,24 +62,20 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:handle" component={Profile} />
+              <Route exact path="/nodes" component={Nodes} />
+              <Route exact path="/node/:handle" component={Node} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/create-profile"
-                  component={CreateProfile}
+                  path="/create-node"
+                  component={CreateNode}
                 />
               </Switch>
               <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
-                />
+                <PrivateRoute exact path="/edit-node" component={EditNode} />
               </Switch>
               <Switch>
                 <PrivateRoute
