@@ -24,9 +24,10 @@ class Education extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, edu._id)}
-            className="btn btn-danger"
+            type="button"
+            className="btn btn-danger mr-1"
           >
-            Delete
+            <i className="fas fa-times" />
           </button>
         </td>
       </tr>

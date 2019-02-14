@@ -18,7 +18,7 @@ class Node extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.node.node === null && this.node.node.loading) {
+    if (nextProps.node.node === null && this.props.node.loading) {
       this.props.history.push("/not-found");
     }
   }

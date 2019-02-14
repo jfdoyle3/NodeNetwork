@@ -48,7 +48,7 @@ class Dashboard extends Component {
             <p class="lead text-muted">Welcome {user.name}</p>
             <p>Please setup a Node</p>
             <Link to="/create-node" className="btn btn-lg btn-info">
-              Create Node
+              Create a Node
             </Link>
           </div>
         );
